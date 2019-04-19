@@ -2,7 +2,7 @@ How to install Cygwin on Windows 10
 
 1) Download cygwin from https://cygwin.com/install.html
 
-2) Open 'File Explorer' and create a folder in your home directory called 'cygwin-installer'.  Next, move the cygwin install executable to the 'cygwin-installer' folder.
+2) Open 'File Explorer' and create a folder in your home directory (c:\Users\<username>) called 'cygwin-installer'.  Next, move the cygwin install executable to the 'cygwin-installer' folder.
 
 3) Run the installer executable:
   - Using 'File Explorer', double click setup-x86 or setup-x86_64 as the case may be.  For each section of the installer, do the following:
