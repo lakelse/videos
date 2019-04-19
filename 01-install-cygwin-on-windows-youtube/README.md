@@ -1,4 +1,4 @@
-How to install Cygwin on Windows 10
+# How to install Cygwin on Windows 10
 
 1) Download cygwin from https://cygwin.com/install.html
 
