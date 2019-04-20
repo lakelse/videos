@@ -11,7 +11,7 @@ cd /cygdrive/c/Users/Jon/cygwin-installer
 
 3) Run the command to install mysql:
 ```bash
-setup-x86.exe --packages mysql,mysql-server --quiet-mode
+./setup-x86.exe --packages mysql,mysql-server --quiet-mode
 ```
 
 4) Once the install is complete, we need to setup the database:
