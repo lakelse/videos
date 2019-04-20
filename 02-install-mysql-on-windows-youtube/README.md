@@ -35,6 +35,11 @@ mysql --user root
 > select now();
 
 > show databases;
+> exit
 
+```
 
+8) Shutdown MySQL
+```bash
+mysqladmin --user root shutdown
 ```
