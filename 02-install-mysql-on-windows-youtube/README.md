@@ -1,4 +1,5 @@
 # How to install MySQL on Windows 10 via Cygwin
+Installation instructions for: https://www.youtube.com/watch?v=w5TsNZRWBNE
 
 1) Ensure that you have Cygwin installed.  These instructions assume that you've watched this video: https://www.youtube.com/watch?v=QonIPpKodCw (How to install Cygwin on Windows 10)
 
