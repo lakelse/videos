@@ -35,3 +35,18 @@ ln -s /cygdrive/c/Users/Jon/cygwin-installer/setup-x86_64.exe cygwin-installer
 ```bash
 cygwin-installer --quiet-mode --packages git
 ```
+
+6) Confirm git has been install correctly
+```bash
+cd dev
+mkdir hello-git
+cd hello-git
+git init .
+touch test.txt
+git add .
+git commit -m "Add test.txt"
+notepad test.txt
+git add .
+git commit -m "Update test.txt"
+git log
+```
