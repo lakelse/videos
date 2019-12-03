@@ -28,6 +28,7 @@ echo $PATH
 4) Next we'll create a symbolic link from the bin folder to the cygwin-installer folder so that the installer is on the PATH:
 ```bash
 cd bin
+# remember to replace 'Jon' with your username
 ln -s /cygdrive/c/Users/Jon/cygwin-installer/setup-x86_64.exe cygwin-installer
 ```
 
