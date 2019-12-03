@@ -25,7 +25,7 @@ source ~/.bash_profile
 echo $PATH
 ```
 
-4) Next we'll create a symbolic link from the bin folder to the cygwin-installer folder so that the installer is on the PATH:
+4) Next, we'll create a symbolic link from the bin folder to the cygwin-installer executable so that the installer is on the PATH.  This will allow us to use the installer, no matter the current working directory.
 ```bash
 cd bin
 # remember to replace 'Jon' with your username
