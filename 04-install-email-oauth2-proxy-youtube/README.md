@@ -13,21 +13,29 @@
     - Copy secret 'value' to text file.
 4. Add permissions:
     - Click ***API permissions*** -> ***Add permission*** -> ***APIs my organization uses***
-    - Search for `Office 365 Exchange Online`
+    - Search for:
+    ```
+    Office 365 Exchange Online
+    ```
     - Click ***Application permissions***
-    - Search for `IMAP.AccessAsApp`, select and click ***Add permissions***
+    - Search for:
+    ```
+    IMAP.AccessAsApp
+    ```
+    select and click ***Add permissions***
+    
     - Click ***Grant admin consent*** -> Click ***Yes***
 
 ## Configure Exchange
 
 Start PowerShell as ***Administrator***
 ```powershell
-Install-Module -Name ExchangeOnlineManagement
-Install-Module -Name AzureAD
-
-Import-Module AzureAD
-Import-Module ExchangeOnlineManagement
-
+Install-Module -Name AzureAD, ExchangeOnlineManagement
+```
+```powershell
+Import-Module AzureAD, ExchangeOnlineManagement
+```
+```powershell
 # Connect to Azure, if you have multiple tenants, specify Tenant ID
 Connect-AzureAD -Tenant <tenant id>
 
