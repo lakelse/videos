@@ -35,12 +35,18 @@ Install-Module -Name AzureAD, ExchangeOnlineManagement
 ```powershell
 Import-Module AzureAD, ExchangeOnlineManagement
 ```
+
+Store the tenant id in a variable:
+```powershell
+$tenantId = <replace with tenant id>
+```
+
 ```powershell
 # Connect to Azure, if you have multiple tenants, specify Tenant ID
-Connect-AzureAD -Tenant <tenant id>
+Connect-AzureAD -Tenant $tenantId
 
 # connect to Exchange, specifying the organization 
-Connect-ExchangeOnline -Organization <tenant id>
+Connect-ExchangeOnline -Organization $tenantId
 
 # Get the service principal from Azure Active Directory
 $MyApp = Get-AzureADServicePrincipal -SearchString "<enter name of azure app>"
