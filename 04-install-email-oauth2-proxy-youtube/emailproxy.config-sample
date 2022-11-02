@@ -1,0 +1,16 @@
+[IMAP-1993]
+local_address = 127.0.0.1
+server_address = outlook.office365.com
+server_port = 993
+
+[<account email>]
+token_url = https://login.microsoftonline.com/<tenant id>/oauth2/v2.0/token
+oauth2_scope = https://outlook.office365.com/.default
+redirect_uri = http://localhost
+client_id = <client id>
+client_secret = <client secret>
+
+[emailproxy]
+delete_account_token_on_password_error = True
+encrypt_client_secret_on_first_use = False
+
