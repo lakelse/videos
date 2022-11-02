@@ -42,6 +42,10 @@ $tenantId = <replace with tenant id>
 ```
 
 ```powershell
+$clientId = <replace with client id>
+```
+
+```powershell
 # Connect to Azure, if you have multiple tenants, specify Tenant ID
 Connect-AzureAD -Tenant $tenantId
 
@@ -50,6 +54,7 @@ Connect-ExchangeOnline -Organization $tenantId
 
 # Get the service principal from Azure Active Directory
 $MyApp = Get-AzureADServicePrincipal -SearchString "<enter name of azure app>"
+$MyApp = Get-AzureADServicePrincipal -Filter "AppId eq $clientId"
 
 # Configure Service Principal in Exchange
 New-ServicePrincipal `
