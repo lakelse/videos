@@ -8,7 +8,7 @@
     - Click ***Register***
     - Copy Application ID (Client ID) and Directory (Tenant) ID into a text file.
 3. Create client secret:
-	  - Click 'Certificates & secrets' -> New client secret
+	  - Click ***Certificates & secrets*** -> ***New client secret***
     - Enter name
     - Copy secret 'value' to text file.
 4. Add permissions:
