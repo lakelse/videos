@@ -53,21 +53,21 @@ Connect-AzureAD -Tenant $tenantId
 Connect-ExchangeOnline -Organization $tenantId
 
 # Get the service principal from Azure Active Directory
-$MyApp = Get-AzureADServicePrincipal -Filter "AppId eq $clientId"
+$ServicePrincipal = Get-AzureADServicePrincipal -Filter "AppId eq $clientId"
 
 # Configure Service Principal in Exchange
 New-ServicePrincipal `
-  -AppId $MyApp.AppID `
-  -ServiceId $MyApp.ObjectId `
-  -DisplayName "Service Principal for IMAP APP"
+  -AppId $ServicePrincipal.AppID `
+  -ServiceId $ServicePrincipal.ObjectId `
+  -DisplayName "Service Principal for IMAP 'Email OAuth2.0 Proxy' Test"
 
 # Give the Service Principal full access to the mailbox
-Add-MailboxPermission -Identity "<email address of account>" `
-  -User $MyApp.ObjectId -AccessRights FullAccess
+Add-MailboxPermission -Identity "$mailbox" `
+  -User $ServicePrincipal.ObjectId -AccessRights FullAccess
 ```
 
 ## Build development VM
-If you wish, you can install a Virtual Machine if you have Virtual Box and Vagrant installed:
+If you wish, you can install a Virtual Machine (VirtualBox and Vagrant required):
 ```bash
 # bring up VM
 vagrant up
@@ -81,7 +81,8 @@ wget https://github.com/simonrob/email-oauth2-proxy/archive/refs/tags/2022-11-01
 unzip 2022-11-01.zip
 cd email-oauth2-proxy-2022-11-01/
 python3 -m pip install -r requirements-no-gui.txt
-
+```
+```
 mv emailproxy.config emailproxy.config.orig
 cp /vagrant/emailproxy.config-sample emailproxy.config
 ```
