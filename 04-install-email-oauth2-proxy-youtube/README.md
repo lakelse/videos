@@ -53,7 +53,6 @@ Connect-AzureAD -Tenant $tenantId
 Connect-ExchangeOnline -Organization $tenantId
 
 # Get the service principal from Azure Active Directory
-$MyApp = Get-AzureADServicePrincipal -SearchString "<enter name of azure app>"
 $MyApp = Get-AzureADServicePrincipal -Filter "AppId eq $clientId"
 
 # Configure Service Principal in Exchange
