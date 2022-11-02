@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.box = "debian/bullseye64"
 
-  config.vm.network "forwarded_port", guest: 8080, host: 8080
+  config.vm.network "forwarded_port", guest: 80, host: 8080
 
   config.vm.provider "virtualbox" do |vb|
     vb.gui = false
@@ -15,10 +15,13 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update && apt-get upgrade -y
     apt-get install -y \
+      git \
+      net-tools \
       python3 \
       python3-pip \
-      net-tools \
-      unzip
+      tmux \
+      unzip \
+      vim
 
     apt-get install -y \
       ca-certificates \
@@ -44,6 +47,11 @@ Vagrant.configure("2") do |config|
       docker-compose-plugin
 
     usermod -a -G docker vagrant
+  SHELL
+
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
+    curl -sSL https://raw.githubusercontent.com/lakelse/lakelse.github.com/master/install_tmux.sh | bash
+    curl -sSL https://raw.githubusercontent.com/lakelse/lakelse.github.com/master/install_vim.sh | bash
   SHELL
 end
 

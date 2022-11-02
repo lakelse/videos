@@ -18,11 +18,11 @@
     Office 365 Exchange Online
     ```
     - Click ***Application permissions***
-    - Search for:
+    - Search for and select:
     ```
     IMAP.AccessAsApp
     ```
-    select and click ***Add permissions***
+    Click ***Add permissions***
     
     - Click ***Grant admin consent*** -> Click ***Yes***
 
@@ -46,9 +46,15 @@ $clientId = <replace with client id>
 ```
 
 ```powershell
+$mailbox = <replace with email address of mailbox>
+```
+
+```powershell
 # Connect to Azure, if you have multiple tenants, specify Tenant ID
 Connect-AzureAD -Tenant $tenantId
+```
 
+```powershell
 # connect to Exchange, specifying the organization 
 Connect-ExchangeOnline -Organization $tenantId
 
@@ -67,9 +73,9 @@ Add-MailboxPermission -Identity "$mailbox" `
 ```
 
 ## Build development VM
-If you wish, you can install a Virtual Machine (VirtualBox and Vagrant required):
+If you wish, you can install a Virtual Machine to test with (VirtualBox and Vagrant required):
 ```bash
-# bring up VM
+# provision and configure virtual machine
 vagrant up
 ```
 
@@ -82,11 +88,32 @@ unzip 2022-11-01.zip
 cd email-oauth2-proxy-2022-11-01/
 python3 -m pip install -r requirements-no-gui.txt
 ```
-```
-mv emailproxy.config emailproxy.config.orig
-cp /vagrant/emailproxy.config-sample emailproxy.config
-```
 
 ### Configure for Client Credentials Auth flow
+```bash
+# create config file from sample, complete config file
+cd /vagrant
+cp emailproxy.config-sample emailproxy.config
+```
+# 
+```bash
+# create backup of original config file
+cd ~/email-oauth2-proxy-2022-11-01
+mv emailproxy.config emailproxy.config.orig
+
+# replace with new config file
+cp /vagrant/emailproxy.config emailproxy.config
+```
 
 ## Test Proxy w/ PHP IMAP
+```bash
+# start up proxy
+python3 emailproxy.py --no-gui --debug
+
+# start up php test app
+cd /vagrant
+IMAP_USERNAME=<user-email> IMAP_PASSWORD=<password> ./bin/start-apache.sh
+```
+
+View php app: http://127.0.0.1:8080
+
