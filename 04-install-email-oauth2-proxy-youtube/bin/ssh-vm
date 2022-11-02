@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# A work-around for this bug: https://github.com/hashicorp/vagrant/issues/12838
+# - If you 'vagrant ssh' into the VM, ctrl-c doesn't work as expected, messes
+#   up the terminal for a lack of a better way to describe it.
+ssh \
+  -i .vagrant/machines/default/virtualbox/private_key \
+  -p $( \
+    vagrant port --guest 22 --machine-readable \
+    | grep info \
+    | cut -d "," -f5 \
+    | tr -d "\r\n" \
+    ) \
+  vagrant@127.0.0.1 "$@"
+
