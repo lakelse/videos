@@ -1,0 +1,57 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "debian/bullseye64"
+
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = false
+    vb.memory = "1024"
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update && apt-get upgrade -y
+    apt-get install -y \
+      git \
+      net-tools \
+      python3 \
+      python3-pip \
+      tmux \
+      unzip \
+      vim
+
+    apt-get install -y \
+      ca-certificates \
+      curl \
+      gnupg \
+      lsb-release
+
+    mkdir -p /etc/apt/keyrings
+
+    curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+    echo "deb [arch=$(dpkg --print-architecture) \
+               signed-by=/etc/apt/keyrings/docker.gpg] \
+      https://download.docker.com/linux/debian \
+      $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+    
+    apt-get update
+
+    apt-get install -y \
+      docker-ce \
+      docker-ce-cli \
+      containerd.io \
+      docker-compose-plugin
+
+    usermod -a -G docker vagrant
+  SHELL
+
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
+    curl -sSL https://raw.githubusercontent.com/lakelse/lakelse.github.com/master/install_tmux.sh | bash
+    curl -sSL https://raw.githubusercontent.com/lakelse/lakelse.github.com/master/install_vim.sh | bash
+  SHELL
+end
+
