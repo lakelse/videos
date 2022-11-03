@@ -94,21 +94,20 @@ python3 -m pip install -r requirements-no-gui.txt
 
 ### Configure for Client Credentials Auth flow
 ```bash
-# create config file from sample, complete config file
+# create config file from sample, edit w/ appropriate values
 cd /vagrant
 cp emailproxy.config-sample emailproxy.config
 ```
-# 
+Create backup of original config and create a symbolic link to the new config file.
 ```bash
 # create backup of original config file
 cd ~/email-oauth2-proxy-2022-11-01
 mv emailproxy.config emailproxy.config.orig
 
-# replace with new config file
-cp /vagrant/emailproxy.config emailproxy.config
+ln /vagrant/emailproxy.config
 ```
 
-## Test Proxy w/ PHP IMAP
+### Test Proxy w/ Apache PHP IMAP
 ```bash
 # start up proxy
 python3 emailproxy.py --no-gui --debug
@@ -120,3 +119,11 @@ IMAP_USERNAME=<user-email> IMAP_PASSWORD=<password> ./bin/start-apache.sh
 
 View php app: http://127.0.0.1:8080
 
+### Encrypt client secret
+
+- Stop proxy
+- Clear out config added by proxy
+- Set `encrypt_client_secret_on_first_use = True`
+- Start proxy and view php app: http://127.0.0.1:8080
+
+Notice how the config changes after use.  The `client_secret` is replaced with `encrypted_client_secret`.  The client secret is encrypted with the password and of course decrypted with it.

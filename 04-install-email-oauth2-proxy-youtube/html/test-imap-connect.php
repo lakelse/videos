@@ -10,8 +10,9 @@ echo "Trying to connect as: $user <br />\n<br />\n";
 $mbox = imap_open($mailbox, $user, $password);
 
 if (!$mbox) {
-  echo "It didn't work!";
+  echo "<pre>";
   print_r(imap_errors());
+  echo "</pre>";
   exit;
 }
 
