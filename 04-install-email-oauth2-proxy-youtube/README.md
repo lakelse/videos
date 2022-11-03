@@ -9,7 +9,6 @@ These instructions walk through installing and configuring Email OAuth2 Proxy:
 2. Click ***Azure Active Directory*** -> ***App Registrations*** -> ***New Registration***
     - Enter name, make sure single tenant
     - Click ***Register***
-    - Copy Application ID (Client ID) and Directory (Tenant) ID into a text file.
 3. Create client secret:
 	  - Click ***Certificates & secrets*** -> ***New client secret***
     - Enter name
