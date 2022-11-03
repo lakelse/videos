@@ -104,7 +104,7 @@ Create backup of original config and create a symbolic link to the new config fi
 cd ~/email-oauth2-proxy-2022-11-01
 mv emailproxy.config emailproxy.config.orig
 
-ln /vagrant/emailproxy.config
+ln -s /vagrant/emailproxy.config
 ```
 
 ### Test Proxy w/ Apache PHP IMAP
