@@ -1,5 +1,8 @@
 # How to install Email OAuth 2.0 Proxy
 
+These instructions walk through installing and configuring Email OAuth2 Proxy:
+- https://github.com/simonrob/email-oauth2-proxy
+
 ## Setup an Application in AzureAD
 
 1. Login to Azure: https://portal.azure.com
@@ -38,15 +41,15 @@ Import-Module AzureAD, ExchangeOnlineManagement
 
 Store the tenant id in a variable:
 ```powershell
-$tenantId = <replace with tenant id>
+$tenantId = "<replace with tenant id>"
 ```
 
 ```powershell
-$clientId = <replace with client id>
+$clientId = "<replace with client id>"
 ```
 
 ```powershell
-$mailbox = <replace with email address of mailbox>
+$mailbox = "<replace with email address of mailbox>"
 ```
 
 ```powershell
@@ -59,7 +62,7 @@ Connect-AzureAD -Tenant $tenantId
 Connect-ExchangeOnline -Organization $tenantId
 
 # Get the service principal from Azure Active Directory
-$ServicePrincipal = Get-AzureADServicePrincipal -Filter "AppId eq $clientId"
+$ServicePrincipal = Get-AzureADServicePrincipal -Filter "AppId eq '$clientId'"
 
 # Configure Service Principal in Exchange
 New-ServicePrincipal `
